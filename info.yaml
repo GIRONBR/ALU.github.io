@@ -1,56 +1,44 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  title:        "ALU de 5 bits con lógica y desplazamientos"
+  author:       "Carlos Eduardo Giron Barrientos"              # Cámbialo por tu nombre real
+  discord:      ""          # Opcional (para contacto en Discord)
+  description:  "ALU con suma, resta, lógica y shifts controlada por switches"
+  language:     "SystemVerilog"          # ¡Usas SystemVerilog!
+  clock_hz:     0                        # Tu diseño es completamente combinacional
+  tiles: "1x1"                           # Probablemente cabe en 1x1 si no usas RAM ni lógica muy densa
+  top_module:  "tt_um_tunombre_alu5bit"  # Cámbialo con tu GitHub user: ej. tt_um_juanperez_alu5bit
 
-  # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
-
-  # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
-
-  # List your project's source files here.
-  # Source files must be in ./src and you must list each source file separately, one per line.
-  # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
-    - "project.v"
+    - "ALU_Completa.sv"                 # Cambia al nombre real del archivo si es distinto
 
-# The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
-# This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
-  # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  # Inputs (sw[15:0])
+  ui[0]:  "A0"        # sw[0]
+  ui[1]:  "A1"
+  ui[2]:  "A2"
+  ui[3]:  "A3"
+  ui[4]:  "A4"
+  ui[5]:  "B0"        # sw[5]
+  ui[6]:  "B1"
+  ui[7]:  "B2"
 
-  # Outputs
-  uo[0]: ""
-  uo[1]: ""
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uio[0]: "B3"        # sw[8] — usamos uio porque ya agotamos los 8 ui[0-7]
+  uio[1]: "B4"
+  uio[2]: "SEL0"      # sw[12]
+  uio[3]: "SEL1"
+  uio[4]: "SEL2"
+  uio[5]: "NC"        # Not Connected 
+  uio[6]: "NC"
+  uio[7]: "NC"
 
-  # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
-  uio[7]: ""
+  # Outputs (led[6:0])
+  uo[0]: "RES0"
+  uo[1]: "RES1"
+  uo[2]: "RES2"
+  uo[3]: "RES3"
+  uo[4]: "RES4"
+  uo[5]: "RES5"
+  uo[6]: "OVERFLOW"
 
-# Do not change!
 yaml_version: 6
