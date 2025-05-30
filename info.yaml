@@ -7,10 +7,10 @@ project:
   language:     "SystemVerilog"          # ¡Usas SystemVerilog!
   clock_hz:     0                        # Tu diseño es completamente combinacional
   tiles: "1x1"                           # Probablemente cabe en 1x1 si no usas RAM ni lógica muy densa
-  top_module:  "tt_um_tunombre_alu5bit"  # Cámbialo con tu GitHub user: ej. tt_um_juanperez_alu5bit
+  top_module:  "tt_um_mialu"  
 
   source_files:
-    - "ALU_Completa.sv"                 # Cambia al nombre real del archivo si es distinto
+    - "project.v"                 # Cambia al nombre real del archivo si es distinto
 
 pinout:
   # Inputs (sw[15:0])
