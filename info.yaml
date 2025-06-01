@@ -5,35 +5,36 @@ project:
   discord:      ""          # Opcional
   description:  "ALU de 2 bits con suma, resta, lógica y desplazamientos controlada por switches"
   language:     "Verilog"
-  clock_hz:     0                     # Combinacional
+  clock_hz:     100000000                    # Combinacional
   tiles:        "1x1"
-  top_module:   "tt_um_mialu"
+  top_module:   "tt_um_expendedora"
 
   source_files:
-    - "tt_um_mialu.v"       # Cambia si tu archivo tiene otro nombre
+    - "tt_um_expendedora_completa.v"       # Cambia si tu archivo tiene otro nombre
+
 
 pinout:
-  # Inputs
-  ui[0]: "A0"
-  ui[1]: "A1"
-  ui[2]: "B0"
-  ui[3]: "B1"
-  ui[4]: "SEL0"
-  ui[5]: "SEL1"
-  ui[6]: "SEL2"
-  ui[7]: "NC"          # No usado
+  # Entradas (botones)
+  ui[0]: "BTN_U"     # Botón Up
+  ui[1]: "BTN_L"     # Botón Left
+  ui[2]: "BTN_R"     # Botón Right
+  ui[3]: "BTN_D"     # Botón Down
+  ui[4]: "NC"
+  ui[5]: "NC"
+  ui[6]: "NC"
+  ui[7]: "NC"
 
-  # Outputs
-  uo[0]: "RES0"
-  uo[1]: "RES1"
-  uo[2]: "RES2"
+  # Salidas (LEDs para bebidas)
+  uo[0]: "BEBIDA_1"
+  uo[1]: "BEBIDA_2"
+  uo[2]: "BEBIDA_3"
   uo[3]: "NC"
   uo[4]: "NC"
   uo[5]: "NC"
-  uo[6]: "OVERFLOW"
+  uo[6]: "NC"
   uo[7]: "NC"
 
-  # uio no se usa
+  # IO bidireccionales no usados
   uio[0]: "NC"
   uio[1]: "NC"
   uio[2]: "NC"
