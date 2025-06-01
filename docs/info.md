@@ -29,3 +29,6 @@ El chip está basado en una **FSM de 4 estados**, que representa la cantidad de 
 - `uo[1]` = LED encendido si se compra bebida 2
 - `uo[2]` = LED encendido si se compra bebida 3
 
+![silicio](https://github.com/GIRONBR/maquina_expendedora.github.io/blob/main/chip.png?raw=true)
+
+
