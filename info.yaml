@@ -1,44 +1,46 @@
 # Tiny Tapeout project information
 project:
-  title:        "ALU de 5 bits con lógica y desplazamientos"
-  author:       "Carlos Eduardo Giron Barrientos"              # Cámbialo por tu nombre real
-  discord:      ""          # Opcional (para contacto en Discord)
-  description:  "ALU con suma, resta, lógica y shifts controlada por switches"
-  language:     "SystemVerilog"          # ¡Usas SystemVerilog!
-  clock_hz:     0                        # Tu diseño es completamente combinacional
-  tiles: "1x1"                           # Probablemente cabe en 1x1 si no usas RAM ni lógica muy densa
-  top_module:  "tt_um_mialu"  
+  title:        "ALU de 2 bits con lógica y desplazamientos"
+  author:       "Carlos Eduardo Giron Barrientos"
+  discord:      ""          # Opcional
+  description:  "ALU de 2 bits con suma, resta, lógica y desplazamientos controlada por switches"
+  language:     "Verilog"
+  clock_hz:     0                     # Combinacional
+  tiles:        "1x1"
+  top_module:   "tt_um_mialu"
 
   source_files:
-    - "project.v"                 # Cambia al nombre real del archivo si es distinto
+    - "tt_um_mialu.v"       # Cambia si tu archivo tiene otro nombre
 
 pinout:
-  # Inputs (sw[15:0])
-  ui[0]:  "A0"        # sw[0]
-  ui[1]:  "A1"
-  ui[2]:  "A2"
-  ui[3]:  "A3"
-  ui[4]:  "A4"
-  ui[5]:  "B0"        # sw[5]
-  ui[6]:  "B1"
-  ui[7]:  "B2"
+  # Inputs
+  ui[0]: "A0"
+  ui[1]: "A1"
+  ui[2]: "B0"
+  ui[3]: "B1"
+  ui[4]: "SEL0"
+  ui[5]: "SEL1"
+  ui[6]: "SEL2"
+  ui[7]: "NC"          # No usado
 
-  uio[0]: "B3"        # sw[8] — usamos uio porque ya agotamos los 8 ui[0-7]
-  uio[1]: "B4"
-  uio[2]: "SEL0"      # sw[12]
-  uio[3]: "SEL1"
-  uio[4]: "SEL2"
-  uio[5]: "NC"        # Not Connected 
-  uio[6]: "NC"
-  uio[7]: "NC"
-
-  # Outputs (led[6:0])
+  # Outputs
   uo[0]: "RES0"
   uo[1]: "RES1"
   uo[2]: "RES2"
-  uo[3]: "RES3"
-  uo[4]: "RES4"
-  uo[5]: "RES5"
+  uo[3]: "NC"
+  uo[4]: "NC"
+  uo[5]: "NC"
   uo[6]: "OVERFLOW"
+  uo[7]: "NC"
+
+  # uio no se usa
+  uio[0]: "NC"
+  uio[1]: "NC"
+  uio[2]: "NC"
+  uio[3]: "NC"
+  uio[4]: "NC"
+  uio[5]: "NC"
+  uio[6]: "NC"
+  uio[7]: "NC"
 
 yaml_version: 6
