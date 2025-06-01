@@ -72,5 +72,5 @@ module ALU_Pequeña (
     end
 
 endmodule
-t
+
 
