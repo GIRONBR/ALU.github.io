@@ -1,19 +1,34 @@
+`default_nettype none
 `timescale 1ns / 1ps
 
-module expendedora_completa (
-    input clk,           // Reloj de 100 MHz
-    input btnC,          // BOTON DE RESETEO 
-    input btnU, btnL, btnR, btnD,  // Botones de entrada
-    output [2:0] led     // LEDs para indicar bebida
+// ==========================================
+// Wrapper para Tiny Tapeout + lógica completa
+// ==========================================
+module tt_um_expendedora (
+    input  wire [7:0] ui_in,    // Entradas dedicadas
+    output wire [7:0] uo_out,   // Salidas dedicadas
+    input  wire [7:0] uio_in,   // Pines bidireccionales (entrada)
+    output wire [7:0] uio_out,  // Pines bidireccionales (salida)
+    output wire [7:0] uio_oe,   // Habilitación de los uio (1 = salida)
+    input  wire       ena,      // Enable (siempre 1)
+    input  wire       clk,      // Reloj (100 MHz)
+    input  wire       rst_n     // Reset activo en bajo
 );
 
-    // =======================
-    // Divisor de reloj
-    // =======================
-    reg [31:0] myreg = 0;
-    wire slow_clk;
+    // ========================
+    // Asignación de señales de entrada
+    // ========================
+    wire btnC = ~rst_n;  // botón de reset desde rst_n
+    wire btnU = ui_in[0]; // botón up
+    wire btnL = ui_in[1]; // botón left
+    wire btnR = ui_in[2]; // botón right
+    wire btnD = ui_in[3]; // botón down
 
-    assign slow_clk = myreg[26];  // Frecuencia ~0.67 Hz
+    // ========================
+    // Divisor de reloj (~0.67 Hz)
+    // ========================
+    reg [31:0] myreg = 0;
+    wire slow_clk = myreg[26];
 
     always @(posedge clk or posedge btnC) begin
         if (btnC)
@@ -22,9 +37,9 @@ module expendedora_completa (
             myreg <= myreg + 1;
     end
 
-    // =======================
-    // Máquina de Estados
-    // =======================
+    // ========================
+    // Máquina de estados
+    // ========================
     reg [1:0] state = 2'd0;
     reg [1:0] nextstate;
 
@@ -78,9 +93,19 @@ module expendedora_completa (
         endcase
     end
 
-    assign led[0] = m1;
-    assign led[1] = m2;
-    assign led[2] = m3;
+    // ========================
+    // Asignación de salidas (LEDs)
+    // ========================
+    assign uo_out[0] = m1;        // LED bebida 1
+    assign uo_out[1] = m2;        // LED bebida 2
+    assign uo_out[2] = m3;        // LED bebida 3
+    assign uo_out[7:3] = 5'b0;    // No usados
+
+    assign uio_out = 8'b0;        // No se usan pines bidireccionales como salida
+    assign uio_oe  = 8'b0;        // Todos los uio como entrada (no habilitados)
+
+    // Prevenir warnings de señales no utilizadas
+    wire _unused = &{ena};
 
 endmodule
 
