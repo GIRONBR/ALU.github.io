@@ -1,5 +1,8 @@
 # Máquina Expendedora Digital - Proyecto Tiny Tapeout
 
+## VIDEO 
+[video explicacion del servicio ](https://youtu.be/S-Epb8QCvI4)
+
 ##  Descripción general
 
 Este proyecto implementa una **máquina expendedora digital** mediante una máquina de estados finitos (FSM), diseñada para ser integrada en el flujo de fabricación de silicio de [Tiny Tapeout](https://tinytapeout.com/). 
